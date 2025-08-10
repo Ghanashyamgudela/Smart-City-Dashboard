@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart City Dashboard - Home</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Fjalla+One&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=M+PLUS+Rounded+1c&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Sans+JP:wght@100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Pacifico&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Sevillana&family=WDXL+Lubrifont+SC&display=swap" rel="stylesheet">
+    <style>
+        
+
+           .register-container {
+            max-width: 550px;
+            margin: 60px auto;
+        }
+        .register-card {
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        .register-header {
+            background-color: var(--bs-primary);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .register-body {
+            padding: 30px;
+        }
+        .form-floating {
+            margin-bottom: 20px;
+        }
+        .btn-register {
+            width: 100%;
+            padding: 12px;
+            font-weight: 500;
+        }
+        .register-footer {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .password-requirements {
+            font-size: 0.85rem;
+            color: #6c757d;
+            margin-top: -15px;
+            margin-bottom: 20px;
+        }
+        .password-requirements ul {
+            padding-left: 20px;
+            margin-bottom: 0;
+        }
+        .shine-button {
+  position: relative;
+  display: inline-block;
+  padding: 2px 2px;
+  font-size: 18px;
+  color: white;
+  background: #3275b77b;
+  border: none;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+/* Create the shine effect using ::before */
+.shine-button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255, 255, 255, 0.6),
+    transparent
+  );
+  transform: skewX(-20deg);
+}
+
+/* On hover, animate the shine */
+.shine-button:hover::before {
+  animation: shine 0.75s ease forwards;
+}
+
+@keyframes shine {
+  0% {
+    left: -75%;
+  }
+  100% {
+    left: 125%;
+  }
+}
+.glow-animation {
+    animation: glow 1.5s infinite alternate;
+}
+
+@keyframes glow {
+    from {
+        box-shadow: 0 0 5px -5px rgba(61, 77, 223, 0.781);
+    }
+    to {
+        box-shadow: 0 0 20px 5px rgba(61, 77, 223, 0.781);
+    }
+}
+@media (prefers-reduced-motion: reduce) {
+    .animate__animated,
+    .pulse-animation,
+    .glow-animation,
+    .flash-animation,
+    .marker-animation,
+    .progress-bar-animated,
+    .rotating,
+    .bounce-animation,
+    .shake-animation,
+    .typing-animation,
+    .floating-animation,
+    .gradient-animation,
+    .slide-in-notification,
+    .slide-out-notification,
+    .modal-fade-in {
+        animation: none !important;
+        transition: none !important;
+    }}
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html"> <i class="fa-solid fa-cloud-bolt" style="color: #74C0FC;"></i>Smart City Dashboard</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="dashboard.html">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="traffic.html">Traffic</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="environment.html">Environment</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="events.html">Events</a>
+                    </li>
+                </ul>
+                <!-- Auth buttons will be inserted here by auth.js -->
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero-section text-white text-center py-5">
+        <div class="container">
+            <h1 class="display-3 fw-bold mb-3">Welcome to Smart City Dashboard</h1>
+            <p class="lead mb-4">Real-time monitoring and visualization of city data for better urban management</p>
+            <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                <a href="dashboard.html" class="btn btn-primary btn-lg px-4 gap-3 glow-animation">View Dashboard</a>
+                <a href="#features" class="btn btn-outline-light btn-lg px-4">Learn More</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Features Section -->
+    <section id="features" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5" data-aos="fade-up">Key Features</h2>
+            <div class="row g-4">
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card h-100 feature-card">
+                        <div class="card-body text-center">
+                            <div class="feature-icon mb-3 floating-animation">
+                                <i class="bi bi-graph-up"></i>
+                            </div>
+                            <h3 class="card-title">Traffic Monitoring</h3>
+                            <p class="card-text">Real-time traffic data visualization with congestion alerts and predictive analytics.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card h-100 feature-card">
+                        <div class="card-body text-center">
+                            <div class="feature-icon mb-3 floating-animation">
+                                <i class="bi bi-cloud"></i>
+                            </div>
+                            <h3 class="card-title">Environmental Metrics</h3>
+                            <p class="card-text">Monitor air quality, noise levels, and other environmental factors affecting urban life.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="card h-100 feature-card">
+                        <div class="card-body text-center">
+                            <div class="feature-icon mb-3 floating-animation">
+                                <i class="bi bi-calendar-event"></i>
+                            </div>
+                            <h3 class="card-title">City Events</h3>
+                            <p class="card-text">Stay updated with upcoming events, public gatherings, and community activities.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cities Section -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-5" data-aos="fade-up">Featured Cities</h2>
+            <div class="row g-4">
+                <div class="col-md-3" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="card city-card text-white shadow-lg floating-animation">
+                        <img src="images/newyork.jpg" class="card-img-top" alt="New York City">
+                        <div class="card-img-overlay d-flex flex-column justify-content-end">
+                            <h5 class="card-title ">New York</h5>
+                            <a href="dashboard.html?city=new-york" class="btn shine-button btn-sm btn-primary ">View Data</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="card city-card text-white shadow-lg floating-animation">
+                        <img src="images/london.crdownload" class="card-img-top" alt="London">
+                        <div class="card-img-overlay d-flex flex-column justify-content-end">
+                            <h5 class="card-title">London</h5>
+                            <a href="dashboard.html?city=london" class="btn shine-button btn-sm btn-primary">View Data</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="card city-card text-white shadow-lg floating-animation">
+                        <img src="https://www.planetware.com/photos-large/JPN/japan-tokyo-asakusa-senso-ji-temple.jpg" class="card-img-top" alt="Tokyo">
+                        <div class="card-img-overlay d-flex flex-column justify-content-end">
+                            <h5 class="card-title">Tokyo</h5>
+                            <a href="dashboard.html?city=tokyo" class="btn shine-button btn-sm btn-primary">View Data</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="card city-card text-white shadow-lg floating-animation">
+                        <img src="https://www.planetware.com/photos-large/SIN/singapore-merlion-park.jpg" class="card-img-top" alt="Singapore">
+                        <div class="card-img-overlay d-flex flex-column justify-content-end">
+                            <h5 class="card-title">Singapore</h5>
+                            <a href="dashboard.html?city=singapore" class="btn shine-button btn-sm btn-primary">View Data</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="card city-card text-white shadow-lg floating-animation">
+                        <img src="images/paris.jpg" class="card-img-top" alt="Singapore">
+                        <div class="card-img-overlay d-flex flex-column justify-content-end">
+                            <h5 class="card-title">Paris</h5>
+                            <a href="dashboard.html?city=singapore" class="btn shine-button btn-sm btn-primary">View Data</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="card city-card text-white shadow-lg floating-animation">
+                        <img src="https://www.allplan.com/fileadmin/_processed_/6/5/csm_iStock-183346577_NEU_b998568fdd.jpg" class="card-img-top" alt="Singapore">
+                        <div class="card-img-overlay d-flex flex-column justify-content-end">
+                            <h5 class="card-title">Dubai</h5>
+                            <a href="dashboard.html?city=singapore" class="btn shine-button btn-sm btn-primary">View Data</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="card city-card text-white shadow-lg floating-animation">
+                        <img src="https://c.ndtvimg.com/2025-05/601640bo_taj-mahal_625x300_21_May_25.jpg?im=FeatureCrop,algorithm=dnn,width=1200,height=738" class="card-img-top" alt="Singapore">
+                        <div class="card-img-overlay d-flex flex-column justify-content-end">
+                            <h5 class="card-title">India</h5>
+                            <a href="dashboard.html?city=singapore" class="btn shine-button btn-sm btn-primary ">View Data</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 " data-aos="zoom-in" data-aos-delay="400">
+                    <div class="card city-card text-white shadow-lg floating-animation">
+                        <img src="https://beoriginaltours.com/wp-content/uploads/2023/08/ansgar-scheffold-mtfTz0FnwBw-unsplash-1-900x500.jpg" class="card-img-top" alt="Singapore">
+                        <div class="card-img-overlay d-flex flex-column justify-content-end">
+                            <h5 class="card-title">Germany</h5>
+                            <a href="dashboard.html?city=singapore" class="btn shine-button btn-sm btn-primary">View Data</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-5 text-center call-to-action">
+        <div class="container">
+            <h2 class="mb-4">Ready to explore your city's data?</h2>
+            <p class="lead mb-4">Get started with our comprehensive dashboard to monitor and analyze urban metrics.</p>
+            <a href="dashboard.html" class="btn btn-lg btn-primary glow-animation">Go to Dashboard</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-4  bg-dark text-white">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>Smart City Dashboard</h5>
+                    <p>A comprehensive solution for real-time city data visualization and monitoring.</p>
+                </div>
+                <div class="col-md-3">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="index.html" class="text-white">Home</a></li>
+                        <li><a href="dashboard.html" class="text-white">Dashboard</a></li>
+                        <li><a href="traffic.html" class="text-white">Traffic</a></li>
+                        <li><a href="environment.html" class="text-white">Environment</a></li>
+                        <li><a href="events.html" class="text-white">Events</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5>Contact</h5>
+                    <ul class="list-unstyled">
+                       <li>By: Codegan @Python Fullstack Trainee</li>
+                        <li>Batch: 015</li>
+                    </ul>
+                </div>
+            </div>
+            <hr>
+            <div class="text-center">
+                <p>&copy; 2025 Smart City Dashboard. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    
+    <!-- AOS (Animate On Scroll) Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- Custom JS -->
+    <script src="js/auth.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/animations.js"></script>
+</body>
+</html>

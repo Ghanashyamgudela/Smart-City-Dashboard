@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart City Dashboard - Environment</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="css/animations.css">
+    <style>
+        .card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html"><i class="fa-solid fa-cloud-bolt" style="color: #74C0FC;"></i>Smart City Dashboard</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="dashboard.html">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="traffic.html">Traffic</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="environment.html">Environment</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="events.html">Events</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Environment Header -->
+    <header class="dashboard-header py-4">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <h1 class="mb-0">Environmental Monitoring</h1>
+                    <p class="text-muted">Air quality, noise levels, and pollution data</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <div class="d-flex justify-content-md-end">
+                        <div class="me-3">
+                            <label for="citySelect" class="form-label">Select City:</label>
+                            <select class="form-select" id="citySelect" onchange="updateEnvironmentData()">
+                                <option value="new-york">New York</option>
+                                <option value="london">London</option>
+                                <option value="tokyo">Tokyo</option>
+                                <option value="singapore">Singapore</option>
+                                <option value="paris">Paris</option>
+                                <option value="dubai">Dubai</option>
+                                <option value="india">India</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="timeRange" class="form-label">Time Range:</label>
+                            <select class="form-select" id="timeRange" onchange="updateEnvironmentData()">
+                                <option value="now">Right Now</option>
+                                <option value="today">Today</option>
+                                <option value="week">This Week</option>
+                                <option value="month">This Month</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Environment Content -->
+    <section class="py-4">
+        <div class="container">
+            <!-- Environment Overview Cards -->
+            <div class="row g-4 mb-4">
+                <div class="col-md-3">
+                    <div class="card metric-card">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <h6 class="card-subtitle mb-2 text-muted">Air Quality Index</h6>
+                                    <h2 class="card-title mb-0" id="airQualityValue">42</h2>
+                                </div>
+                                <div class="metric-icon bg-success-subtle text-success">
+                                    <i class="bi bi-wind"></i>
+                                </div>
+                            </div>
+                            <p class="card-text mt-3 mb-0"><small class="text-success"><i class="bi bi-arrow-down"></i> 3 points from yesterday</small></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card metric-card">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <h6 class="card-subtitle mb-2 text-muted">Noise Level</h6>
+                                    <h2 class="card-title mb-0" id="noiseLevelValue">68 dB</h2>
+                                </div>
+                                <div class="metric-icon bg-warning-subtle text-warning">
+                                    <i class="bi bi-volume-up"></i>
+                                </div>
+                            </div>
+                            <p class="card-text mt-3 mb-0"><small class="text-warning"><i class="bi bi-arrow-up"></i> 2 dB from yesterday</small></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card metric-card">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <h6 class="card-subtitle mb-2 text-muted">CO₂ Emissions</h6>
+                                    <h2 class="card-title mb-0" id="co2EmissionsValue">412 ppm</h2>
+                                </div>
+                                <div class="metric-icon bg-danger-subtle text-danger">
+                                    <i class="bi bi-cloud"></i>
+                                </div>
+                            </div>
+                            <p class="card-text mt-3 mb-0"><small class="text-danger"><i class="bi bi-arrow-up"></i> 5 ppm from yesterday</small></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card metric-card">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <h6 class="card-subtitle mb-2 text-muted">Water Quality</h6>
+                                    <h2 class="card-title mb-0" id="waterQualityValue">Good</h2>
+                                </div>
+                                <div class="metric-icon bg-info-subtle text-info">
+                                    <i class="bi bi-droplet"></i>
+                                </div>
+                            </div>
+                            <p class="card-text mt-3 mb-0"><small class="text-info"><i class="bi bi-dash"></i> No change from yesterday</small></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Air Quality Details -->
+            <div class="row mb-4">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <h5 class="card-title mb-0">Air Quality Details</h5>
+                            <div class="btn-group" role="group">
+                                <button type="button" class="btn btn-sm btn-outline-secondary active">Daily</button>
+                                
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <canvas id="airQualityChart" height="250"></canvas>
+                                </div>
+                                <div class="col-md-4">
+                                    <h6 class="mb-3">Pollutant Breakdown</h6>
+                                    <div class="mb-3">
+                                        <div class="d-flex justify-content-between mb-1">
+                                            <span>PM2.5</span>
+                                            <span>18 μg/m³</span>
+                                        </div>
+                                        <div class="progress" style="height: 8px;">
+                                            <div class="progress-bar bg-success" role="progressbar" style="width: 36%;" aria-valuenow="36" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <div class="d-flex justify-content-between mb-1">
+                                            <span>PM10</span>
+                                            <span>32 μg/m³</span>
+                                        </div>
+                                        <div class="progress" style="height: 8px;">
+                                            <div class="progress-bar bg-success" role="progressbar" style="width: 42%;" aria-valuenow="42" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <div class="d-flex justify-content-between mb-1">
+                                            <span>O₃ (Ozone)</span>
+                                            <span>45 ppb</span>
+                                        </div>
+                                        <div class="progress" style="height: 8px;">
+                                            <div class="progress-bar bg-warning" role="progressbar" style="width: 56%;" aria-valuenow="56" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <div class="d-flex justify-content-between mb-1">
+                                            <span>NO₂</span>
+                                            <span>28 ppb</span>
+                                        </div>
+                                        <div class="progress" style="height: 8px;">
+                                            <div class="progress-bar bg-success" role="progressbar" style="width: 35%;" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <div class="d-flex justify-content-between mb-1">
+                                            <span>SO₂</span>
+                                            <span>5 ppb</span>
+                                        </div>
+                                        <div class="progress" style="height: 8px;">
+                                            <div class="progress-bar bg-success" role="progressbar" style="width: 12%;" aria-valuenow="12" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <div class="d-flex justify-content-between mb-1">
+                                            <span>CO</span>
+                                            <span>0.8 ppm</span>
+                                        </div>
+                                        <div class="progress" style="height: 8px;">
+                                            <div class="progress-bar bg-success" role="progressbar" style="width: 20%;" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Environment Map and Noise Levels -->
+            <div class="row g-4 mb-4">
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <h5 class="card-title mb-0">Environmental Heatmap</h5>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="showAllPollutantsSwitch" checked>
+                                <label class="form-check-label" for="showAllPollutantsSwitch">Show All Pollutants</label>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div id="environmentMap" class="environment-map"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title mb-0">Noise Levels by District</h5>
+                        </div>
+                        <div class="card-body">
+                            <canvas id="noiseLevelChart" height="250"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Weather and Recommendations -->
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title mb-0">Current Weather Conditions</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="row align-items-center">
+                                <div class="col-md-6 text-center">
+                                    <i class="bi bi-cloud-sun display-1 text-warning"></i>
+                                    <h2 class="mt-2 mb-0">72°F</h2>
+                                    <p class="text-muted">Partly Cloudy</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                            <span>Humidity</span>
+                                            <span>65%</span>
+                                        </li>
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                            <span>Wind</span>
+                                            <span>8 mph NE</span>
+                                        </li>
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                            <span>Pressure</span>
+                                            <span>1012 hPa</span>
+                                        </li>
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                            <span>UV Index</span>
+                                            <span>5 (Moderate)</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title mb-0">Health Recommendations</h5>
+                        </div>
+                        <div class="card-body p-0">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    <div class="d-flex">
+                                        <div class="flex-shrink-0 me-3">
+                                            <i class="bi bi-person-check text-success fs-4"></i>
+                                        </div>
+                                        <div>
+                                            <h6 class="mb-1">General Population</h6>
+                                            <p class="mb-0">Air quality is acceptable. However, sensitive individuals should consider limiting prolonged outdoor exertion.</p>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="d-flex">
+                                        <div class="flex-shrink-0 me-3">
+                                            <i class="bi bi-heart-pulse text-warning fs-4"></i>
+                                        </div>
+                                        <div>
+                                            <h6 class="mb-1">Sensitive Groups</h6>
+                                            <p class="mb-0">Active children and adults, and people with respiratory disease, such as asthma, should limit prolonged outdoor exertion.</p>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="d-flex">
+                                        <div class="flex-shrink-0 me-3">
+                                            <i class="bi bi-calendar-check text-info fs-4"></i>
+                                        </div>
+                                        <div>
+                                            <h6 class="mb-1">Forecast</h6>
+                                            <p class="mb-0">Air quality is expected to improve tomorrow as winds shift to the northwest.</p>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="d-flex">
+                                        <div class="flex-shrink-0 me-3">
+                                            <i class="bi bi-info-circle text-primary fs-4"></i>
+                                        </div>
+                                        <div>
+                                            <h6 class="mb-1">Tips</h6>
+                                            <p class="mb-0">Consider using public transportation today to help reduce emissions. Keep windows closed during high traffic periods.</p>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-4 bg-dark text-white mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>Smart City Dashboard</h5>
+                    <p>A comprehensive solution for real-time city data visualization and monitoring.</p>
+                </div>
+                <div class="col-md-3">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="index.html" class="text-white">Home</a></li>
+                        <li><a href="dashboard.html" class="text-white">Dashboard</a></li>
+                        <li><a href="traffic.html" class="text-white">Traffic</a></li>
+                        <li><a href="environment.html" class="text-white">Environment</a></li>
+                        <li><a href="events.html" class="text-white">Events</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5>Contact</h5>
+                    <ul class="list-unstyled">
+                       <li>By: Codegan @Python Fullstack Trainee</li>
+                        <li>Batch: 015</li>
+                    </ul>
+                </div>
+            </div>
+            <hr>
+            <div class="text-center">
+                <p>&copy; 2025 Smart City Dashboard. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    
+    <!-- AOS (Animate On Scroll) Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- Leaflet.js for Maps -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
+    
+    <!-- Custom JS -->
+    <script src="js/environment.js"></script>
+    <script src="js/animations.js"></script>
+</body>
+</html>

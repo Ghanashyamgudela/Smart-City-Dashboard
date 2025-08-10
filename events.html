@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart City Dashboard - Events</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<style>
+    .card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+</style></head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html"><i class="fa-solid fa-cloud-bolt" style="color: #74C0FC;"></i>Smart City Dashboard</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="dashboard.html">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="traffic.html">Traffic</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="environment.html">Environment</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="events.html">Events</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Events Header -->
+    <header class="dashboard-header py-4">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <h1 class="mb-0">City Events</h1>
+                    <p class="text-muted">Upcoming events, festivals, and public gatherings</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <div class="d-flex justify-content-md-end">
+                        <div class="me-3">
+                            <label for="citySelect" class="form-label">Select City:</label>
+                            <select class="form-select" id="citySelect" onchange="updateEventsData()">
+                                <option value="new-york">New York</option>
+                                <option value="london">London</option>
+                                <option value="tokyo">Tokyo</option>
+                                <option value="singapore">Singapore</option>
+                                <option value="paris">Paris</option>
+                                <option value="dubai">Dubai</option>
+                                <option value="india">India</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="eventType" class="form-label">Event Type:</label>
+                            <select class="form-select" id="eventType" onchange="filterEvents()">
+                                <option value="all">All Events</option>
+                                <option value="cultural">Cultural</option>
+                                <option value="sports">Sports</option>
+                                <option value="entertainment">Entertainment</option>
+                                <option value="business">Business</option>
+                                <option value="community">Community</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Events Content -->
+    <section class="py-4">
+        <div class="container">
+            <!-- Events Overview Cards -->
+            <div class="row g-4 mb-4" data-aos="fade-up" data-aos-duration="800">
+                <div class="col-md-3">
+                    <div class="card metric-card">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <h6 class="card-subtitle mb-2 text-muted">Today's Events</h6>
+                                    <h2 class="card-title mb-0" id="todayEventsValue">8</h2>
+                                </div>
+                                <div class="metric-icon bg-primary-subtle text-primary">
+                                    <i class="bi bi-calendar-day"></i>
+                                </div>
+                            </div>
+                            <p class="card-text mt-3 mb-0"><small class="text-primary"><i class="bi bi-arrow-up"></i> 2 more than yesterday</small></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card metric-card">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <h6 class="card-subtitle mb-2 text-muted">This Week</h6>
+                                    <h2 class="card-title mb-0" id="weekEventsValue">24</h2>
+                                </div>
+                                <div class="metric-icon bg-success-subtle text-success">
+                                    <i class="bi bi-calendar-week"></i>
+                                </div>
+                            </div>
+                            <p class="card-text mt-3 mb-0"><small class="text-success"><i class="bi bi-arrow-up"></i> 5 more than last week</small></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card metric-card">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <h6 class="card-subtitle mb-2 text-muted">This Month</h6>
+                                    <h2 class="card-title mb-0" id="monthEventsValue">86</h2>
+                                </div>
+                                <div class="metric-icon bg-info-subtle text-info">
+                                    <i class="bi bi-calendar-month"></i>
+                                </div>
+                            </div>
+                            <p class="card-text mt-3 mb-0"><small class="text-info"><i class="bi bi-arrow-up"></i> 12 more than last month</small></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card metric-card">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <h6 class="card-subtitle mb-2 text-muted">Major Events</h6>
+                                    <h2 class="card-title mb-0" id="majorEventsValue">5</h2>
+                                </div>
+                                <div class="metric-icon bg-warning-subtle text-warning">
+                                    <i class="bi bi-star"></i>
+                                </div>
+                            </div>
+                            <p class="card-text mt-3 mb-0"><small class="text-warning"><i class="bi bi-arrow-up"></i> 2 new this month</small></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Calendar and Featured Events -->
+            <div class="row g-4 mb-4">
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <h5 class="card-title mb-0">Events Calendar</h5>
+                            
+                        </div>
+                        <div class="card-body">
+                            <div id="eventsCalendar" class="events-calendar"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title mb-0">Featured Events</h5>
+                        </div>
+                        <div class="card-body p-0">
+                            <div class="list-group list-group-flush">
+                                <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="modal" data-bs-target="#eventModal">
+                                    <div class="d-flex w-100 justify-content-between">
+                                        <h6 class="mb-1">City Marathon</h6>
+                                        <small class="text-primary">Today</small>
+                                    </div>
+                                    <p class="mb-1">Annual city marathon with over 10,000 participants expected.</p>
+                                    <small class="text-muted">Central Park, 8:00 AM</small>
+                                </a>
+                                <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="modal" data-bs-target="#eventModal">
+                                    <div class="d-flex w-100 justify-content-between">
+                                        <h6 class="mb-1">Tech Conference</h6>
+                                        <small class="text-secondary">Tomorrow</small>
+                                    </div>
+                                    <p class="mb-1">Leading tech companies showcase their latest innovations.</p>
+                                    <small class="text-muted">Convention Center, 9:00 AM</small>
+                                </a>
+                                <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="modal" data-bs-target="#eventModal">
+                                    <div class="d-flex w-100 justify-content-between">
+                                        <h6 class="mb-1">Food Festival</h6>
+                                        <small class="text-secondary">In 2 days</small>
+                                    </div>
+                                    <p class="mb-1">Culinary delights from around the world with top chefs.</p>
+                                    <small class="text-muted">Downtown Plaza, 11:00 AM</small>
+                                </a>
+                                <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="modal" data-bs-target="#eventModal">
+                                    <div class="d-flex w-100 justify-content-between">
+                                        <h6 class="mb-1">Art Exhibition</h6>
+                                        <small class="text-secondary">In 3 days</small>
+                                    </div>
+                                    <p class="mb-1">Contemporary art showcase featuring local and international artists.</p>
+                                    <small class="text-muted">City Gallery, 10:00 AM</small>
+                                </a>
+                                <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="modal" data-bs-target="#eventModal">
+                                    <div class="d-flex w-100 justify-content-between">
+                                        <h6 class="mb-1">Music Concert</h6>
+                                        <small class="text-secondary">In 5 days</small>
+                                    </div>
+                                    <p class="mb-1">Annual summer concert featuring top artists and bands.</p>
+                                    <small class="text-muted">City Stadium, 7:00 PM</small>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Events Map and Categories -->
+         
+
+            <!-- Events List -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <h5 class="card-title mb-0">Upcoming Events</h5>
+                            <div class="input-group" style="width: 250px;">
+                                <input type="text" class="form-control form-control-sm" placeholder="Search events..." id="eventSearch">
+                                <button class="btn btn-sm btn-outline-secondary" type="button"><i class="bi bi-search"></i></button>
+                            </div>
+                        </div>
+                        <div class="card-body p-0">
+                            <div class="table-responsive">
+                                <table class="table table-hover mb-0">
+                                    <thead>
+                                        <tr>
+                                            <th>Event</th>
+                                            <th>Date & Time</th>
+                                            <th>Location</th>
+                                            <th>Category</th>
+                                            <th>Attendance</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="eventsTableBody">
+                                        <tr>
+                                            <td>City Marathon</td>
+                                            <td>Today, 8:00 AM</td>
+                                            <td>Central Park</td>
+                                            <td><span class="badge bg-success">Sports</span></td>
+                                            <td>10,000+</td>
+                                            <td>
+                                                <button class="btn btn-sm btn-outline-primary me-1" data-bs-toggle="modal" data-bs-target="#eventModal">Details</button>
+                                                <button class="btn btn-sm btn-outline-secondary"><i class="bi bi-calendar-plus"></i></button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Tech Conference</td>
+                                            <td>Tomorrow, 9:00 AM</td>
+                                            <td>Convention Center</td>
+                                            <td><span class="badge bg-info">Business</span></td>
+                                            <td>5,000+</td>
+                                            <td>
+                                                <button class="btn btn-sm btn-outline-primary me-1" data-bs-toggle="modal" data-bs-target="#eventModal">Details</button>
+                                                <button class="btn btn-sm btn-outline-secondary"><i class="bi bi-calendar-plus"></i></button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Food Festival</td>
+                                            <td>Jun 15, 11:00 AM</td>
+                                            <td>Downtown Plaza</td>
+                                            <td><span class="badge bg-warning text-dark">Cultural</span></td>
+                                            <td>8,000+</td>
+                                            <td>
+                                                <button class="btn btn-sm btn-outline-primary me-1" data-bs-toggle="modal" data-bs-target="#eventModal">Details</button>
+                                                <button class="btn btn-sm btn-outline-secondary"><i class="bi bi-calendar-plus"></i></button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Art Exhibition</td>
+                                            <td>Jun 16, 10:00 AM</td>
+                                            <td>City Gallery</td>
+                                            <td><span class="badge bg-warning text-dark">Cultural</span></td>
+                                            <td>2,000+</td>
+                                            <td>
+                                                <button class="btn btn-sm btn-outline-primary me-1" data-bs-toggle="modal" data-bs-target="#eventModal">Details</button>
+                                                <button class="btn btn-sm btn-outline-secondary"><i class="bi bi-calendar-plus"></i></button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Music Concert</td>
+                                            <td>Jun 18, 7:00 PM</td>
+                                            <td>City Stadium</td>
+                                            <td><span class="badge bg-danger">Entertainment</span></td>
+                                            <td>15,000+</td>
+                                            <td>
+                                                <button class="btn btn-sm btn-outline-primary me-1" data-bs-toggle="modal" data-bs-target="#eventModal">Details</button>
+                                                <button class="btn btn-sm btn-outline-secondary"><i class="bi bi-calendar-plus"></i></button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Farmers Market</td>
+                                            <td>Jun 19, 9:00 AM</td>
+                                            <td>City Square</td>
+                                            <td><span class="badge bg-primary">Community</span></td>
+                                            <td>3,000+</td>
+                                            <td>
+                                                <button class="btn btn-sm btn-outline-primary me-1" data-bs-toggle="modal" data-bs-target="#eventModal">Details</button>
+                                                <button class="btn btn-sm btn-outline-secondary"><i class="bi bi-calendar-plus"></i></button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Science Fair</td>
+                                            <td>Jun 22, 10:00 AM</td>
+                                            <td>Science Museum</td>
+                                            <td><span class="badge bg-info">Educational</span></td>
+                                            <td>4,000+</td>
+                                            <td>
+                                                <button class="btn btn-sm btn-outline-primary me-1" data-bs-toggle="modal" data-bs-target="#eventModal">Details</button>
+                                                <button class="btn btn-sm btn-outline-secondary"><i class="bi bi-calendar-plus"></i></button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <nav aria-label="Events pagination">
+                                <ul class="pagination pagination-sm justify-content-end mb-0">
+                                    <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+                                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Event Modal -->
+    <div class="modal fade" id="eventModal" tabindex="-1" aria-labelledby="eventModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="eventModalLabel">City Marathon</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <img src="https://siemprerunning.com/wp-content/uploads/2023/11/La-Maraton.jpg" class="img-fluid rounded mb-3" alt="City Marathon">
+                            <div class="d-flex justify-content-between mb-3">
+                                <span class="badge bg-success">Sports</span>
+                                <span class="text-muted">Expected Attendance: 10,000+</span>
+                            </div>
+                            <h6>Date & Time</h6>
+                            <p>June 13, 2023 at 8:00 AM</p>
+                            <h6>Location</h6>
+                            <p>Central Park, New York</p>
+                            <h6>Organizer</h6>
+                            <p>City Sports Association</p>
+                        </div>
+                        <div class="col-md-6">
+                            <h6>Description</h6>
+                            <p>The annual City Marathon is back for its 25th year! Join thousands of runners from around the world for this iconic race through the heart of the city.</p>
+                            <p>The marathon course takes participants through scenic routes, historic landmarks, and vibrant neighborhoods.</p>
+                            <h6>Event Details</h6>
+                            <ul>
+                                <li>Full Marathon (26.2 miles)</li>
+                                <li>Half Marathon (13.1 miles)</li>
+                                <li>10K Run</li>
+                                <li>5K Fun Run/Walk</li>
+                            </ul>
+                            <h6>Registration</h6>
+                            <p>Registration is required. Visit the official website for more details.</p>
+                            <h6>Traffic Impact</h6>
+                            <p>Several roads will be closed from 6:00 AM to 2:00 PM. Please check the traffic advisory for alternative routes.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Add to Calendar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="py-4 bg-dark text-white mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>Smart City Dashboard</h5>
+                    <p>A comprehensive solution for real-time city data visualization and monitoring.</p>
+                </div>
+                <div class="col-md-3">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="index.html" class="text-white">Home</a></li>
+                        <li><a href="dashboard.html" class="text-white">Dashboard</a></li>
+                        <li><a href="traffic.html" class="text-white">Traffic</a></li>
+                        <li><a href="environment.html" class="text-white">Environment</a></li>
+                        <li><a href="events.html" class="text-white">Events</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5>Contact</h5>
+                    <ul class="list-unstyled">
+                        <li>By: Codegan @Python Fullstack Trainee</li>
+                        <li>Batch: 015</li>
+                    </ul>
+                </div>
+            </div>
+            <hr>
+            <div class="text-center">
+                <p>&copy; 2025 Smart City Dashboard. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    
+    <!-- AOS (Animate On Scroll) Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- FullCalendar -->
+    <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.0/main.min.css' rel='stylesheet' />
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.0/main.min.js'></script>
+    
+    <!-- Leaflet.js for Maps -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
+    
+    <!-- Custom JS -->
+    <script src="js/events.js"></script>
+    <script src="js/animations.js"></script>
+</body>
+</html>
