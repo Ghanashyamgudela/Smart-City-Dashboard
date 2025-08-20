@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart City Dashboard - Animation Demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <style>
+        .demo-section {
+            padding: 50px 0;
+            border-bottom: 1px solid #eee;
+        }
+        .demo-title {
+            margin-bottom: 30px;
+        }
+        .demo-box {
+            height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .demo-icon {
+            font-size: 3rem;
+            color: #0d6efd;
+        }
+        .scroll-indicator {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(0,0,0,0.7);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 30px;
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">Smart City Dashboard</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="dashboard.html">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="traffic.html">Traffic</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="environment.html">Environment</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="events.html">Events</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="py-5 text-center bg-light">
+        <div class="container">
+            <h1 class="display-4 animate__animated animate__fadeIn">Animation Demo</h1>
+            <p class="lead animate__animated animate__fadeIn animate__delay-1s">Explore the various animations used in the Smart City Dashboard</p>
+        </div>
+    </header>
+
+    <div class="scroll-indicator animate__animated animate__fadeIn animate__delay-2s">Scroll down to see animations</div>
+
+    <!-- Fade Animations -->
+    <section class="demo-section">
+        <div class="container">
+            <h2 class="text-center demo-title" data-aos="fade-up">Fade Animations</h2>
+            <div class="row">
+                <div class="col-md-3" data-aos="fade-up" data-aos-delay="100">
+                    <div class="demo-box">
+                        <div class="text-center">
+                            <i class="bi bi-arrow-up demo-icon"></i>
+                            <p>Fade Up</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3" data-aos="fade-down" data-aos-delay="200">
+                    <div class="demo-box">
+                        <div class="text-center">
+                            <i class="bi bi-arrow-down demo-icon"></i>
+                            <p>Fade Down</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3" data-aos="fade-right" data-aos-delay="300">
+                    <div class="demo-box">
+                        <div class="text-center">
+                            <i class="bi bi-arrow-right demo-icon"></i>
+                            <p>Fade Right</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3" data-aos="fade-left" data-aos-delay="400">
+                    <div class="demo-box">
+                        <div class="text-center">
+                            <i class="bi bi-arrow-left demo-icon"></i>
+                            <p>Fade Left</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Zoom Animations -->
+    <section class="demo-section">
+        <div class="container">
+            <h2 class="text-center demo-title" data-aos="fade-up">Zoom Animations</h2>
+            <div class="row">
+                <div class="col-md-4" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="demo-box">
+                        <div class="text-center">
+                            <i class="bi bi-zoom-in demo-icon"></i>
+                            <p>Zoom In</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="zoom-out" data-aos-delay="200">
+                    <div class="demo-box">
+                        <div class="text-center">
+                            <i class="bi bi-zoom-out demo-icon"></i>
+                            <p>Zoom Out</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="flip-left" data-aos-delay="300">
+                    <div class="demo-box">
+                        <div class="text-center">
+                            <i class="bi bi-arrow-repeat demo-icon"></i>
+                            <p>Flip</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Continuous Animations -->
+    <section class="demo-section">
+        <div class="container">
+            <h2 class="text-center demo-title" data-aos="fade-up">Continuous Animations</h2>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="demo-box">
+                        <div class="text-center">
+                            <i class="bi bi-arrow-clockwise demo-icon rotating"></i>
+                            <p>Rotating</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="demo-box">
+                        <div class="text-center">
+                            <i class="bi bi-heart demo-icon pulse-animation"></i>
+                            <p>Pulse</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="demo-box">
+                        <div class="text-center">
+                            <i class="bi bi-lightning demo-icon floating-animation"></i>
+                            <p>Float</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="demo-box">
+                        <div class="text-center">
+                            <i class="bi bi-arrow-down-up demo-icon bounce-animation"></i>
+                            <p>Bounce</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Animations -->
+    <section class="demo-section">
+        <div class="container">
+            <h2 class="text-center demo-title" data-aos="fade-up">Interactive Animations</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="demo-box event-item">
+                        <div class="text-center">
+                            <i class="bi bi-hand-index-thumb demo-icon"></i>
+                            <p>Hover Me (Scale)</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="demo-box">
+                        <div class="text-center">
+                            <button class="btn btn-primary btn-lg glow-animation">Hover Me (Glow)</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="demo-box">
+                        <div class="text-center">
+                            <button class="btn btn-danger btn-lg btn-ripple" id="shakeButton">Click Me (Shake)</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Counter Animations -->
+    <section class="demo-section">
+        <div class="container">
+            <h2 class="text-center demo-title" data-aos="fade-up">Counter Animations</h2>
+            <div class="row">
+                <div class="col-md-3" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card metric-card">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <h6 class="card-subtitle mb-2 text-muted">Traffic Congestion</h6>
+                                    <h2 class="card-title mb-0 counter-value" data-target="65">0</h2>
+                                </div>
+                                <div class="metric-icon bg-danger-subtle text-danger">
+                                    <i class="bi bi-car-front"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card metric-card">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <h6 class="card-subtitle mb-2 text-muted">Air Quality Index</h6>
+                                    <h2 class="card-title mb-0 counter-value" data-target="42">0</h2>
+                                </div>
+                                <div class="metric-icon bg-success-subtle text-success">
+                                    <i class="bi bi-wind"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3" data-aos="fade-up" data-aos-delay="300">
+                    <div class="card metric-card">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <h6 class="card-subtitle mb-2 text-muted">Energy Consumption</h6>
+                                    <h2 class="card-title mb-0 counter-value" data-target="120">0</h2>
+                                </div>
+                                <div class="metric-icon bg-warning-subtle text-warning">
+                                    <i class="bi bi-lightning"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3" data-aos="fade-up" data-aos-delay="400">
+                    <div class="card metric-card">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <h6 class="card-subtitle mb-2 text-muted">Active Events</h6>
+                                    <h2 class="card-title mb-0 counter-value" data-target="24">0</h2>
+                                </div>
+                                <div class="metric-icon bg-info-subtle text-info">
+                                    <i class="bi bi-calendar-event"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-4 bg-dark text-white">
+        <div class="container text-center">
+            <p>&copy; 2025 Smart City Dashboard. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- AOS (Animate On Scroll) Library -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <!-- Custom JS -->
+    <script src="js/animations.js"></script>
+    
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: false
+        });
+        
+        // Add shake animation to button
+        document.getElementById('shakeButton').addEventListener('click', function() {
+            this.classList.add('shake-animation');
+            setTimeout(() => {
+                this.classList.remove('shake-animation');
+            }, 500);
+        });
+        
+        // Hide scroll indicator after scrolling
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 200) {
+                document.querySelector('.scroll-indicator').classList.add('animate__fadeOut');
+            }
+        });
+    </script>
+</body>
+</html>

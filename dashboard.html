@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart City Dashboard - Main Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Chela+One&family=Delius&family=Edu+NSW+ACT+Cursive:wght@500&family=Federant&family=Fira+Sans+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Fjalla+One&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=M+PLUS+Rounded+1c&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Mozilla+Headline:wght@200..700&family=Noto+Sans+JP:wght@100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Oswald:wght@200..700&family=Pacifico&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Sevillana&family=Smooch+Sans:wght@100..900&family=WDXL+Lubrifont+SC&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
+        integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+      
+.dashboard-header h1{
+  
+font-family: "Bebas Neue", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 52px;
+  background: -webkit-linear-gradient(#eee, #c8bfbf);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+        
+        body {
+           background-color: #00BAAD;
+background-image: linear-gradient(90deg, transparent 50%,
+  rgba(255,255,255,.5) 50%);
+background-size: 50px 50px;
+        }
+
+        .card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .charts-flex-v2 {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            align-items: flex-start;
+        }
+
+        .chart-card-v2 {
+            flex: 1 1 300px;
+            /* Minimum 300px, grows if space */
+            max-width: 500px;
+        }
+
+        .chart-wrapper-v2 {
+            height: 200px;
+            /* Control height */
+            position: relative;
+        }
+
+        .charts-flex-v2 {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+            align-items: flex-start;
+        }
+
+        .chart-layer-wrapper-v2 {
+            position: relative;
+            flex: 1 1 300px;
+            max-width: 500px;
+            transition: transform 0.3s ease;
+        }
+
+        .chart-card-v2 {
+            position: relative;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            z-index: 3;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .chart-wrapper-v2 {
+            height: 200px;
+            position: relative;
+        }
+
+        .bg-layer-v2 {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            right: -12px;
+            bottom: -12px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            z-index: 1;
+            transition: transform 0.3s ease;
+        }
+
+        .bg-layer-v2.second {
+            top: 24px;
+            left: 24px;
+            right: -24px;
+            bottom: -24px;
+            z-index: 0;
+        }
+
+        .chart-layer-wrapper-v2:hover {
+            transform: translateY(-8px);
+        }
+
+        .chart-layer-wrapper-v2:hover .chart-card-v2 {
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+        }
+
+        .chart-layer-wrapper-v2:hover .bg-layer-v2 {
+            transform: translateY(-4px);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html"><i class="fa-solid fa-cloud-bolt"
+                    style="color: #74C0FC;"></i>Smart City Dashboard</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="dashboard.html">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="traffic.html">Traffic</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="environment.html">Environment</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="events.html">Events</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Dashboard Header -->
+    <header class="dashboard-header py-4 animate__animated animate__fadeIn">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <h1 class="mb-0 animate__animated animate__fadeInLeft">City Dashboard</h1>
+                    <p class="text-muted animate__animated animate__fadeInLeft animate__delay-1s">Comprehensive overview
+                        of city metrics</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <div class="d-flex justify-content-md-end">
+                        <div class="me-3">
+                            <label for="citySelect" class="form-label">Select City:</label>
+                            <select class="form-select" id="citySelect" onchange="updateDashboard()">
+                                <option value="new-york">New York</option>
+                                <option value="london">London</option>
+                                <option value="tokyo">Tokyo</option>
+                                <option value="singapore">Singapore</option>
+                                <option value="paris">Paris</option>
+                                <option value="dubai">Dubai</option>
+                                <option value="india">India</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="timeRange" class="form-label">Time Range:</label>
+                            <select class="form-select" id="timeRange" onchange="updateDashboard()">
+                                <option value="today">Today</option>
+                                <option value="week">This Week</option>
+                                <option value="month">This Month</option>
+                                <option value="year">This Year</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Dashboard Content -->
+    <section class="py-4">
+        <div class="cont">
+            <div class="container">
+                <!-- Key Metrics Cards -->
+                <div class="row g-4 mb-4" data-aos="fade-up" data-aos-duration="800">
+                    <div class="col-md-3" data-aos="fade-up" data-aos-delay="100">
+                        <div class="card metric-card ">
+                            <div class="card-body ">
+                                <div class="d-flex justify-content-between align-items-center ">
+                                    <div>
+                                        <h6 class="card-subtitle mb-2 text-muted">Traffic Congestion</h6>
+                                        <h2 class="card-title mb-0" id="trafficCongestionValue">65%</h2>
+                                    </div>
+                                    <div class="metric-icon bg-danger-subtle text-danger">
+                                        <i class="fa-solid fa-car-side" style="color: #9f2836;"></i>
+                                    </div>
+                                </div>
+                                <p class="card-text mt-3 mb-0"><small class="text-danger"><i class="bi bi-arrow-up"></i>
+                                        5% from yesterday</small></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3" data-aos="fade-up" data-aos-delay="200">
+                        <div class="card metric-card">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <h6 class="card-subtitle mb-2 text-muted">Air Quality Index</h6>
+                                        <h2 class="card-title mb-0 counter-value" id="airQualityValue" data-target="42">
+                                            0</h2>
+                                    </div>
+                                    <div class="metric-icon bg-success-subtle text-success">
+                                        <i class="bi bi-wind"></i>
+                                    </div>
+                                </div>
+                                <p class="card-text mt-3 mb-0"><small class="text-success"><i
+                                            class="bi bi-arrow-down"></i> 3% from yesterday</small></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3" data-aos="fade-up" data-aos-delay="300">
+                        <div class="card metric-card">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <h6 class="card-subtitle mb-2 text-muted">Energy Consumption</h6>
+                                        <h2 class="card-title mb-0" id="energyConsumptionValue">1.2M</h2>
+                                    </div>
+                                    <div class="metric-icon bg-warning-subtle text-warning floating-animation">
+                                        <i class="bi bi-lightning"></i>
+                                    </div>
+                                </div>
+                                <p class="card-text mt-3 mb-0"><small class="text-warning"><i
+                                            class="bi bi-arrow-up"></i> 2% from yesterday</small></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3" data-aos="fade-up" data-aos-delay="400">
+                        <div class="card metric-card">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <h6 class="card-subtitle mb-2 text-muted">Active Events</h6>
+                                        <h2 class="card-title mb-0 counter-value" id="activeEventsValue"
+                                            data-target="24">0</h2>
+                                    </div>
+                                    <div class="metric-icon bg-info-subtle text-info">
+                                        <i class="bi bi-calendar-event"></i>
+                                    </div>
+                                </div>
+                                <p class="card-text mt-3 mb-0"><small class="text-info"><i class="bi bi-arrow-up"></i> 8
+                                        new today</small></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Charts Row -->
+                <div class="row g-4 mb-4" data-aos="fade-up" data-aos-duration="800">
+                    <div class="col-md-8" data-aos="fade-right" data-aos-delay="100">
+                        <div class="card">
+                            <div class="card-header d-flex justify-content-between align-items-center">
+                                <h5 class="card-title mb-0">Traffic Trends</h5>
+                                <div class="btn-group" role="group">
+                                    <button type="button" class="btn btn-sm btn-outline-secondary active">Daily</button>
+
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <canvas id="trafficTrendsChart" height="250"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4" data-aos="fade-left" data-aos-delay="200">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="card-title mb-0">Environmental Metrics</h5>
+                            </div>
+                            <div class="card-body">
+                                <canvas id="environmentalMetricsChart" height="250"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+                <div class="charts-flex-v2 mb-3 " data-aos="fade-up" data-aos-duration="800">
+                    <div class="chart-layer-wrapper-v2" data-aos="fade-right" data-aos-delay="100">
+
+                        <div class="chart-card-v2 card card-v2 p-3">
+                            <div class="card-header-v2">
+                                <h5 class="card-title-v2 mb-0">Traffic Trends</h5>
+                            </div>
+                            <div class="card-body-v2 chart-wrapper-v2">
+                                <canvas id="trafficTrendsChartV2"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="chart-layer-wrapper-v2" data-aos="fade-left" data-aos-delay="200">
+
+                        <div class="chart-card-v2 card-v2 p-3">
+                            <div class="card-header-v2">
+                                <h5 class="card-title-v2 mb-0">Environmental Metrics</h5>
+                            </div>
+                            <div class="card-body-v2 chart-wrapper-v2">
+                                <canvas id="environmentalMetricsChartV2"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+
+                <!-- Map and Events Row -->
+                <div class="row g-4">
+                    <div class="col-md-8" data-aos="fade-up" data-aos-delay="100">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="card-title mb-0">City Map</h5>
+                            </div>
+                            <div class="card-body">
+                                <div id="cityMap" class="city-map"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                        <div class="card">
+                            <div class="card-header d-flex justify-content-between align-items-center">
+                                <h5 class="card-title mb-0">Upcoming Events</h5>
+                                <a href="events.html" class="btn btn-sm btn-primary">View All</a>
+                            </div>
+                            <div class="card-body p-0">
+                                <ul class="list-group list-group-flush" id="upcomingEventsList">
+                                    <li class="list-group-item event-item">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div>
+                                                <h6 class="mb-0">City Marathon</h6>
+                                                <small class="text-muted">Central Park, 8:00 AM</small>
+                                            </div>
+                                            <span class="badge bg-primary">Today</span>
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item event-item">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div>
+                                                <h6 class="mb-0">Tech Conference</h6>
+                                                <small class="text-muted">Convention Center, 9:00 AM</small>
+                                            </div>
+                                            <span class="badge bg-secondary">Tomorrow</span>
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item event-item">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div>
+                                                <h6 class="mb-0">Food Festival</h6>
+                                                <small class="text-muted">Downtown Plaza, 11:00 AM</small>
+                                            </div>
+                                            <span class="badge bg-secondary">In 2 days</span>
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item event-item">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div>
+                                                <h6 class="mb-0">Art Exhibition</h6>
+                                                <small class="text-muted">City Gallery, 10:00 AM</small>
+                                            </div>
+                                            <span class="badge bg-secondary">In 3 days</span>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-4 bg-dark text-white mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>Smart City Dashboard</h5>
+                    <p>A comprehensive solution for real-time city data visualization and monitoring.</p>
+                </div>
+                <div class="col-md-3">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="index.html" class="text-white">Home</a></li>
+                        <li><a href="dashboard.html" class="text-white">Dashboard</a></li>
+                        <li><a href="traffic.html" class="text-white">Traffic</a></li>
+                        <li><a href="environment.html" class="text-white">Environment</a></li>
+                        <li><a href="events.html" class="text-white">Events</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5>Contact</h5>
+                    <ul class="list-unstyled">
+                                               <li>By: X-Street,Y.Area</li>
+                        <li>Contact: (+91)-1234 56789</li>
+
+                    </ul>
+                </div>
+            </div>
+            <hr>
+            <div class="text-center">
+                <p>&copy; 2025 Smart City Dashboard. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+
+    <!-- AOS (Animate On Scroll) Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Leaflet.js for Maps -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
+
+    <!-- Custom JS -->
+    <script src="js/dashboard.js"></script>
+    <script src="js/animations.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Traffic Trends Chart V2
+            const trafficCtxV2 = document.getElementById('trafficTrendsChartV2').getContext('2d');
+            new Chart(trafficCtxV2, {
+                type: 'line',
+                data: {
+                    labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                    datasets: [{
+                        label: 'Visitors',
+                        data: [120, 190, 300, 250, 320, 400, 450],
+                        borderColor: '#4e73df',
+                        backgroundColor: 'rgba(78, 115, 223, 0.2)',
+                        fill: true,
+                        tension: 0.4,
+                        pointBackgroundColor: '#4e73df',
+                        pointRadius: 5
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    animation: {
+                        duration: 1500,
+                        easing: 'easeInOutQuart',
+                        delay: ctx => ctx.type === 'data' ? ctx.dataIndex * 150 : 0
+                    },
+                    plugins: {
+                        legend: { labels: { color: '#333' } },
+                        tooltip: { backgroundColor: 'rgba(0,0,0,0.7)', padding: 10 }
+                    },
+                    scales: {
+                        x: { grid: { display: false } },
+                        y: { beginAtZero: true }
+                    }
+                }
+            });
+
+            // Environmental Metrics Chart V2
+            const envCtxV2 = document.getElementById('environmentalMetricsChartV2').getContext('2d');
+            new Chart(envCtxV2, {
+                type: 'bar',
+                data: {
+                    labels: ['CO₂', 'PM2.5', 'PM10', 'O₃', 'NO₂'],
+                    datasets: [{
+                        label: 'Levels',
+                        data: [35, 12, 45, 28, 18],
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.6)',
+                            'rgba(54, 162, 235, 0.6)',
+                            'rgba(255, 206, 86, 0.6)',
+                            'rgba(75, 192, 192, 0.6)',
+                            'rgba(153, 102, 255, 0.6)'
+                        ],
+                        borderRadius: 8
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    animation: {
+                        duration: 1200,
+                        easing: 'easeOutBounce',
+                        delay: ctx => ctx.type === 'data' ? ctx.dataIndex * 200 : 0
+                    },
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: { backgroundColor: 'rgba(0,0,0,0.8)' }
+                    },
+                    scales: {
+                        x: { grid: { display: false } },
+                        y: { beginAtZero: true }
+                    }
+                }
+            });
+        });
+    </script>
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JAM Services - Home Services at Your Doorstep</title>
+    <link rel="icon" href="./JAM logo.png">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="splash-screen">
+        <img src="JAM logo.png" alt="JAM Logo" id="splash-logo">
+        <h1 id="splash-text">Welcome to JAM Services</h1>
+    </div>
+
+    <div id="main-content" style="display:none;">
+        <!-- Your existing site content -->
+    </div>
+
+    <!-- Navigation Header -->
+    <header class="header" id="header">
+        <nav class="nav container">
+            <!-- <div class="nav__brand">
+                <h2 class="nav__logo">JAM Services</h2>
+            </div> -->
+            <a class="navbar-brand" href="#">
+                <img src="JAM logo.png" alt="JAM Logo" class="nav-logo">
+                JAM Services
+            </a>
+            <ul class="nav__menu" id="nav-menu">
+                <li class="nav__item">
+                    <a href="#home" class="nav__link active">Home</a>
+                </li>
+                <li class="nav__item">
+                    <a href="#services" class="nav__link">Services</a>
+                </li>
+                <li class="nav__item">
+                    <a href="#booking-history" class="nav__link">Booking History</a>
+                </li>
+                <li class="nav__item nav__dropdown">
+                    <a href="#profile" class="nav__link nav__dropdown-toggle" id="profile-dropdown">
+                        Profile
+                        <span class="nav__dropdown-icon">▼</span>
+                    </a>
+                    <ul class="nav__dropdown-menu" id="profile-menu">
+                        <li><a href="#" class="nav__dropdown-link" id="login-link">Login</a></li>
+                        <li><a href="#" class="nav__dropdown-link" id="register-link">Register</a></li>
+                        <li class="nav__dropdown-divider hidden" id="profile-divider"></li>
+                        <li class="hidden" id="my-profile-link"><a href="#" class="nav__dropdown-link">My Profile</a>
+                        </li>
+                        <li class="hidden" id="logout-link"><a href="#" class="nav__dropdown-link">Logout</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <button class="nav__toggle" id="nav-toggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="main">
+        <!-- Homepage Section -->
+        <section class="homepage" id="homepage">
+            <!-- Hero Banner -->
+            <section class="hero" id="home">
+                <div class="hero__container container">
+                    <div class="hero__content">
+                        <h1 class="hero__title">Professional Home Services at Your Doorstep</h1>
+                        <p class="hero__description">
+                            Get expert salon, cleaning, and appliance repair services delivered to your home.
+                            Trusted professionals, transparent pricing, and hassle-free booking.
+                        </p>
+                        <button class="btn btn--primary hero__cta" onclick="scrollToServices()">
+                            Book a Service Now
+                        </button>
+                    </div>
+                    <div class="hero__image">
+                        <div class="hero__illustration">🏠</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Services Section -->
+            <section class="services" id="services">
+                <div class="container">
+                    <div class="services__header">
+                        <h2 class="services__title">Our Services</h2>
+                        <p class="services__subtitle">Choose from our wide range of professional home services</p>
+                    </div>
+                    <div class="services__grid" id="services-grid">
+                        <!-- Services will be dynamically loaded here -->
+                    </div>
+                </div>
+            </section>
+        </section>
+
+        <!-- Booking History Section -->
+        <section class="booking-history hidden" id="booking-history">
+            <div class="container">
+                <div class="booking-history__header">
+                    <button class="btn btn--outline" onclick="showHomepage()">
+                        ← Back to Home
+                    </button>
+                    <h2 class="booking-history__title">Your Booking History</h2>
+                </div>
+                <div class="booking-history__content" id="booking-history-content">
+                    <div class="empty-state">
+                        <div class="empty-state__icon">📋</div>
+                        <h3 class="empty-state__title">No Bookings Yet</h3>
+                        <p class="empty-state__message">You haven't made any bookings yet. Start by browsing our
+                            services!</p>
+                        <button class="btn btn--primary" onclick="scrollToServices()">Browse Services</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Booking Section -->
+        <section class="booking hidden" id="booking-section">
+            <div class="container">
+                <div class="booking__header">
+                    <button class="btn btn--outline" onclick="showHomepage()">
+                        ← Back to Home
+                    </button>
+                    <h2 class="booking__title">Book Your Service</h2>
+                </div>
+
+                <div class="booking__container">
+                    <div class="booking__form-container">
+                        <!-- Step 1: Service Selection -->
+                        <div class="booking__step" id="step-service">
+                            <h3 class="booking__step-title">Select Service</h3>
+                            <div class="service-selection" id="service-selection">
+                                <!-- Service options will be loaded here -->
+                            </div>
+                        </div>
+
+                        <!-- Step 2: Date Selection -->
+                        <div class="booking__step hidden" id="step-date">
+                            <h3 class="booking__step-title">Choose Date</h3>
+                            <div class="calendar" id="calendar">
+                                <div class="calendar__header">
+                                    <button class="calendar__nav" id="prev-month">←</button>
+                                    <h4 class="calendar__month" id="calendar-month">August 2025</h4>
+                                    <button class="calendar__nav" id="next-month">→</button>
+                                </div>
+                                <div class="calendar__grid" id="calendar-grid">
+                                    <!-- Calendar dates will be generated here -->
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Step 3: Time Selection -->
+                        <div class="booking__step hidden" id="step-time">
+                            <h3 class="booking__step-title">Select Time Slot</h3>
+                            <div class="time-slots" id="time-slots">
+                                <!-- Time slots will be loaded here -->
+                            </div>
+                        </div>
+
+                        <!-- Step 4: User Details -->
+                        <div class="booking__step hidden" id="step-details">
+                            <h3 class="booking__step-title">Your Details</h3>
+                            <form class="booking__form" id="booking-form">
+                                <div class="form-group">
+                                    <label for="full-name" class="form-label">Full Name *</label>
+                                    <input type="text" id="full-name" class="form-control" required>
+                                    <span class="form-error" id="name-error"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email" class="form-label">Email Address *</label>
+                                    <input type="email" id="email" class="form-control" required>
+                                    <span class="form-error" id="email-error"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="phone" class="form-label">Phone Number *</label>
+                                    <input type="tel" id="phone" class="form-control" required>
+                                    <span class="form-error" id="phone-error"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="address" class="form-label">Address *</label>
+                                    <textarea id="address" class="form-control" rows="3" required></textarea>
+                                    <span class="form-error" id="address-error"></span>
+                                </div>
+                            </form>
+                        </div>
+
+                        <!-- Navigation Buttons -->
+                        <div class="booking__navigation">
+                            <button class="btn btn--outline hidden" id="prev-step">Previous</button>
+                            <button class="btn btn--primary" id="next-step">Next</button>
+                        </div>
+                    </div>
+
+                    <!-- Order Summary -->
+                    <div class="booking__summary">
+                        <div class="summary card">
+                            <div class="summary__header">
+                                <h3>Order Summary</h3>
+                            </div>
+                            <div class="summary__content" id="order-summary">
+                                <p class="summary__placeholder">Select a service to see pricing</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Payment Section -->
+        <section class="payment hidden" id="payment-section">
+            <div class="container">
+                <div class="payment__header">
+                    <button class="btn btn--outline" onclick="showBooking()">
+                        ← Back to Booking
+                    </button>
+                    <h2 class="payment__title">Payment</h2>
+                </div>
+
+                <div class="payment__container">
+                    <div class="payment__form-container">
+                        <div class="card">
+                            <div class="card__body">
+                                <h3>Payment Details</h3>
+                                <form class="payment__form" id="payment-form">
+                                    <div class="form-group">
+                                        <label for="card-number" class="form-label">Card Number</label>
+                                        <input type="text" id="card-number" class="form-control"
+                                            placeholder="1234 5678 9012 3456" maxlength="19">
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label for="expiry" class="form-label">Expiry</label>
+                                            <input type="text" id="expiry" class="form-control" placeholder="MM/YY"
+                                                maxlength="5">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="cvv" class="form-label">CVV</label>
+                                            <input type="text" id="cvv" class="form-control" placeholder="123"
+                                                maxlength="3">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="cardholder-name" class="form-label">Cardholder Name</label>
+                                        <input type="text" id="cardholder-name" class="form-control"
+                                            placeholder="John Doe">
+                                    </div>
+                                </form>
+                                <button class="btn btn--primary btn--full-width" id="pay-now">
+                                    Pay Now
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="payment__summary">
+                        <div class="summary card">
+                            <div class="summary__header">
+                                <h3>Final Summary</h3>
+                            </div>
+                            <div class="summary__content" id="payment-summary">
+                                <!-- Summary will be populated here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Success Section -->
+        <section class="success hidden" id="success-section">
+            <div class="container">
+                <div class="success__content">
+                    <div class="success__icon">✅</div>
+                    <h2 class="success__title">Booking Confirmed!</h2>
+                    <p class="success__message">
+                        Your service has been successfully booked. You will receive a confirmation email shortly.
+                    </p>
+                    <div class="success__details" id="success-details">
+                        <!-- Booking details will be shown here -->
+                    </div>
+                    <button class="btn btn--primary" onclick="resetBooking()">
+                        Book Another Service
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Login Modal -->
+    <div class="modal hidden" id="login-modal">
+        <div class="modal__overlay" onclick="closeModal('login-modal')">
+            <div class="modal__content" onclick="event.stopPropagation()">
+                <div class="modal__header">
+                    <h3>Login to Your Account</h3>
+                    <button class="modal__close" onclick="closeModal('login-modal')">&times;</button>
+                </div>
+                <form class="auth-form" id="login-form">
+                    <div class="form-group">
+                        <label for="login-email" class="form-label">Email Address</label>
+                        <input type="email" id="login-email" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="login-password" class="form-label">Password</label>
+                        <input type="password" id="login-password" class="form-control" required>
+                    </div>
+                    <button type="submit" class="btn btn--primary btn--full-width">Login</button>
+                </form>
+                <div class="auth-footer">
+                    <p>Don't have an account? <a href="#" onclick="switchToRegister()">Register here</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div class="modal hidden" id="register-modal">
+        <div class="modal__overlay" onclick="closeModal('register-modal')">
+            <div class="modal__content" onclick="event.stopPropagation()">
+                <div class="modal__header">
+                    <h3>Create Your Account</h3>
+                    <button class="modal__close" onclick="closeModal('register-modal')">&times;</button>
+                </div>
+                <form class="auth-form" id="register-form">
+                    <div class="form-group">
+                        <label for="register-name" class="form-label">Full Name</label>
+                        <input type="text" id="register-name" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="register-email" class="form-label">Email Address</label>
+                        <input type="email" id="register-email" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="register-phone" class="form-label">Phone Number</label>
+                        <input type="tel" id="register-phone" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="register-password" class="form-label">Password</label>
+                        <input type="password" id="register-password" class="form-control" required>
+                    </div>
+                    <button type="submit" class="btn btn--primary btn--full-width">Register</button>
+                </form>
+                <div class="auth-footer">
+                    <p>Already have an account? <a href="#" onclick="switchToLogin()">Login here</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Modal -->
+    <div class="modal hidden" id="loading-modal">
+        <div class="modal__overlay">
+            <div class="modal__content">
+                <div class="loading-spinner"></div>
+                <p class="loading-text" id="loading-text">Processing your payment...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__content">
+                <div class="footer__brand">
+                    <h3>JAM Services</h3>
+                    <p>Professional home services at your doorstep</p>
+                </div>
+                <div class="footer__links">
+                    <div class="footer__column">
+                        <h4>Services</h4>
+                        <ul>
+                            <li><a href="#services">Salon Services</a></li>
+                            <li><a href="#services">Home Cleaning</a></li>
+                            <li><a href="#services">Appliance Repair</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer__column">
+                        <h4>Company</h4>
+                        <ul>
+                            <li><a href="#booking-history">Booking History</a></li>
+                            <li><a href="#profile">Profile</a></li>
+                            <li><a href="#careers">Careers</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer__bottom">
+                <p>&copy; 2025 JAM Services. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
